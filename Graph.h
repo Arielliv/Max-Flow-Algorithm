@@ -21,7 +21,10 @@ public:
 	void AddEdge(int u, int v, int c);
 	void RemoveEdge(int u, int v);
 	void AddFlow(int u, int v, int f);
+	int getCapacity(int u, int v);
 	void printGraph() const;
 	Graph getResidualGraph();
+	vector<Vertex> getVectorVertex() const;
+	int getVSize() const;
 };
 

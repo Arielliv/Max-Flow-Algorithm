@@ -73,10 +73,23 @@ void Vertex::printAdjList() const {
 	}
 }
 
-list<GraphNode>::iterator Vertex::findEdage(int v) {
+list<GraphNode>::iterator Vertex::findEdage(int v) const{
 	return find((*this->l).begin(), (*this->l).end(), v);
 }
 
 bool Vertex::checkIfEdgeExists(int v) {
 	return (this->findEdage(v) != (*this->l).end());
 };
+
+int Vertex::getCapacity(int v) const {
+	return this->findEdage(v)->getCapacity();
+}
+
+Vertex& Vertex::operator=(const Vertex& a) {
+	list<GraphNode>::iterator it;
+	this->vertexName = a.vertexName;
+	for (const auto& v : (*a.l)) {
+		(*this->l).push_back(v);
+	}
+	return *this;
+}

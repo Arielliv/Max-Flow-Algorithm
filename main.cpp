@@ -1,6 +1,8 @@
 #include <iostream>
 #include <iterator>
 #include "Graph.h"
+#include "BFSSolution.h"
+
 using namespace std;
 
 int main() {
@@ -19,7 +21,8 @@ int main() {
 		g.AddEdge(i, j, c);
 	}
 
-	g.printGraph();
+	//g.printGraph();
 	cout << "blablalba" << endl;
-	g.getResidualGraph().printGraph();
+	//g.getResidualGraph().printGraph();
+	BFSSolution().run(g, s, t).printGraph();
 }
