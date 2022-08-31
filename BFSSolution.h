@@ -3,7 +3,7 @@
 #include "BFSNode.h"
 #include <vector>
 #include <queue>
-
+class Graph;
 class BFSSolution
 {
 public:

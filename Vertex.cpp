@@ -23,7 +23,7 @@ void Vertex::addFlow(int v, int f) {
 		// throw error
 	}
 	else {
-		this->findEdage(v)->setFlow(f);
+		this->findEdge(v)->setFlow(f);
 	}
 };
 
@@ -32,7 +32,7 @@ void Vertex::removeEdge(int v) {
 		// throw error
 	}
 	else {
-		(*this->l).erase(this->findEdage(v));
+		(*this->l).erase(this->findEdge(v));
 	}
 }
 
@@ -73,16 +73,20 @@ void Vertex::printAdjList() const {
 	}
 }
 
-list<GraphNode>::iterator Vertex::findEdage(int v) const{
+list<GraphNode>::iterator Vertex::findEdge(int v) const{
 	return find((*this->l).begin(), (*this->l).end(), v);
 }
 
 bool Vertex::checkIfEdgeExists(int v) {
-	return (this->findEdage(v) != (*this->l).end());
+	return (this->findEdge(v) != (*this->l).end());
 };
 
 int Vertex::getCapacity(int v) const {
-	return this->findEdage(v)->getCapacity();
+	return this->findEdge(v)->getCapacity();
+}
+
+int Vertex::getFlow(int v) const {
+	return this->findEdge(v)->getFlow();
 }
 
 Vertex& Vertex::operator=(const Vertex& a) {

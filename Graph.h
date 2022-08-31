@@ -5,7 +5,7 @@
 #include <list>
 #include <vector>
 #include "Vertex.h"
-
+#include "BFSSolution.h"
 using namespace std;
 
 class Graph
@@ -26,5 +26,6 @@ public:
 	Graph getResidualGraph();
 	vector<Vertex> getVectorVertex() const;
 	int getVSize() const;
+	int getFlow(int s) const;
 };
 

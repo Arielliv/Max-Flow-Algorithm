@@ -13,7 +13,7 @@ private:
 public:
 	Vertex() : vertexName(-1), l(new list<GraphNode>{}) {};
 	Vertex(int vertexName, list<GraphNode>* l);
-	list<GraphNode>::iterator findEdage(int v) const;
+	list<GraphNode>::iterator findEdge(int v) const;
 	list<int>& getAdjList() const;
 	list<GraphNode> getAdjFullList() const;
 	void removeEdge(int v);
@@ -23,6 +23,7 @@ public:
 	int getVertexName() const;
 	friend bool operator==(const Vertex& a, const Vertex& b);
 	int getCapacity(int v) const;
+	int getFlow(int v) const;
 	Vertex& operator=(const Vertex& a);
 };
 

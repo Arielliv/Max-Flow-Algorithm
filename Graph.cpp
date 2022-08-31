@@ -22,6 +22,11 @@ void Graph::AddEdge(int u, int v, int c) {
 };
 
 void Graph::AddFlow(int u, int v, int f) {
+	if (this->g[u].getCapacity(v) < f) {
+		//error
+		cout << "error in add flow of vertex: " << u << " and vertex : " << v << " tried to add flow of: " << f << " to capacity : " << this->g[u].getCapacity(v) << endl;
+		//return;
+	}
 	this->g[u].addFlow(v, f);
 	//this->g[v - 1].addFlow(u, -f);
 }
@@ -50,7 +55,7 @@ Graph Graph::getResidualGraph() {
 				result.g[i].addEdge(y->getVertexName(), y->getCapacity() - y->getFlow());
 			}
 			if (f > 0) {
-				result.g[y->getVertexName() - 1].addEdge(i, y->getFlow());
+				result.g[y->getVertexName()].addEdge(i, y->getFlow());
 			}
 		}
 
@@ -68,4 +73,14 @@ vector<Vertex> Graph::getVectorVertex() const {
 
 int Graph::getCapacity(int u, int v) {
 	return this->g[u].getCapacity(v);
+}
+
+int Graph::getFlow(int s) const {
+	int count = 0;
+	list<GraphNode> tempList = this->g[s].getAdjFullList();
+	for (auto it = tempList.begin(); it != tempList.end(); ++it) {
+		count += (*it).getFlow();
+	}
+
+	return count;
 }

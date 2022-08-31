@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iterator>
 #include "Graph.h"
+#include "Utils.h"
 #include "BFSSolution.h"
 
 using namespace std;
@@ -22,7 +23,12 @@ int main() {
 	}
 
 	//g.printGraph();
-	cout << "blablalba" << endl;
+	
 	//g.getResidualGraph().printGraph();
-	BFSSolution().run(g, s, t).printGraph();
+	cout << "BFS Method: " << endl;
+	Graph bfsResult = BFSSolution().run(g, s, t);
+	cout << "Max flow = " << bfsResult.getFlow(s) << endl;
+	cout << "Min Cut: ";
+	Utils().printMinCut(bfsResult, s);
+
 }
