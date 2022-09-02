@@ -1,2 +1,6 @@
 ﻿  GreedySolution.cpp
+  main.cpp
+C:\Users\ariel7342\source\repos\Max-Flow-Algorithm\Utils.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\ariel7342\source\repos\Max-Flow-Algorithm\Utils.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Generating Code...
   Max-Flow-Algorithm.vcxproj -> C:\Users\ariel7342\source\repos\Max-Flow-Algorithm\Debug\Max-Flow-Algorithm.exe

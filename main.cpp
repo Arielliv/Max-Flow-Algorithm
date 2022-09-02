@@ -16,11 +16,21 @@ int main() {
 	cin >> s;
 	cin >> t;
 
+	if (s < 0 || t < 0 || n < 0 || m < 0) {
+		cout << "invalid input" << endl;
+		exit(1);
+	}
+
 	Graph g1 = Graph(n);
 	Graph g2 = Graph(n);
 
+	
 	for (int k = 0; k < m; k++) {
 		cin >> i >> j >> c;
+		if (c < 0 || i > n || j > n) {
+			cout << "invalid input" << endl;
+			exit(1);
+		}
 		g1.AddEdge(i, j, c);
 		g2.AddEdge(i, j, c);
 	}
