@@ -30,7 +30,7 @@
     <ClCompile Include="BFSSolution.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BFSNode.cpp">
+    <ClCompile Include="ShorterRouteNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Utils.cpp">
@@ -53,7 +53,7 @@
     <ClInclude Include="BFSSolution.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BFSNode.h">
+    <ClInclude Include="ShorterRouteNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utils.h">

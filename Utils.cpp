@@ -3,7 +3,7 @@
 
 void Utils::printMinCut(Graph g, int s) const {
 	Graph residualGraph = g.getResidualGraph();
-	vector<BFSNode> BFSResult = BFSSolution().BFS(residualGraph, s);
+	vector<ShorterRouteNode> BFSResult = BFSSolution().BFS(residualGraph, s);
 	cout << "S = ";
 
 	for (const auto& vertex : BFSResult) {

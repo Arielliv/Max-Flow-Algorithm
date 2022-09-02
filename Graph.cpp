@@ -16,6 +16,10 @@ list<int> Graph::GetAdjList(int u) {
 	return this->g[u].getAdjList();
 };
 
+list<GraphNode> Graph::getAdjFullList(int u) {
+	return this->g[u].getAdjFullList();
+};
+
 void Graph::AddEdge(int u, int v, int c) {
 	this->g[u].addEdge(v,c);
 	//this->g[v - 1].addEdge(u, 0);
@@ -42,6 +46,39 @@ void Graph::printGraph() const{
 		cout <<  " } " << endl;
 	}
 }
+
+Graph Graph::getNegativeGraph() {
+	Graph result = Graph(this->lSize);
+	for (int i = 0; i < this->lSize; i++) {
+		list<GraphNode> tempList = this->g[i].getAdjFullList();
+		for (auto y = tempList.begin(); y != tempList.end(); ++y) {
+			result.g[i].addEdge(y->getVertexName(), -y->getCapacity());
+		}
+
+	}
+	return result;
+}
+
+Graph Graph::getNegativeResidualGraph() {
+	Graph result = Graph(this->lSize);
+
+	for (int i = 0; i < this->lSize; i++) {
+		list<GraphNode> tempList = this->g[i].getAdjFullList();
+		for (auto y = tempList.begin(); y != tempList.end(); ++y) {
+			int f = y->getFlow();
+			int cf = y->getCapacity() - f;
+			if (cf < 0) {
+				result.g[i].addEdge(y->getVertexName(), y->getCapacity() - y->getFlow());
+			}
+			if (f < 0) {
+				result.g[y->getVertexName()].addEdge(i, y->getFlow());
+			}
+		}
+
+	}
+	return result;
+}
+
 
 Graph Graph::getResidualGraph() {
 	Graph result = Graph(this->lSize);

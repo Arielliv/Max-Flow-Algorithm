@@ -2,8 +2,8 @@
 
 Graph BFSSolution::run(Graph g, int s, int t) {
 	Graph residualGraph = g.getResidualGraph();
-	vector<BFSNode> BFSResult = this->BFS(residualGraph, s);
-	BFSNode cur;
+	vector<ShorterRouteNode> BFSResult = this->BFS(residualGraph, s);
+	ShorterRouteNode cur;
 	int minCapacity, curCapacity;
 	while (getAncestorParent(BFSResult, t) == s) {
 		cur = BFSResult[t];
@@ -29,7 +29,7 @@ Graph BFSSolution::run(Graph g, int s, int t) {
 	return g;
 }
 
-int BFSSolution::getAncestorParent(vector<BFSNode> BFSResult, int u){
+int BFSSolution::getAncestorParent(vector<ShorterRouteNode> BFSResult, int u){
 	int cur = u;
 	int parent = BFSResult[u].getParent();
 	while (parent != -1) {
@@ -39,15 +39,15 @@ int BFSSolution::getAncestorParent(vector<BFSNode> BFSResult, int u){
 	return cur;
 }
 
-vector<BFSNode> BFSSolution::BFS(Graph& g,int s) {
+vector<ShorterRouteNode> BFSSolution::BFS(Graph& g,int s) {
 	list<GraphNode>::iterator it;
 	queue<Vertex> BFSQueue;
-	vector<BFSNode> vResult;
+	vector<ShorterRouteNode> vResult;
 	vResult.reserve(g.getVSize());
 	vector<Vertex> vertexList = g.getVectorVertex();
 
 	for (auto it = begin(vertexList); it != end(vertexList); ++it) {
-		vResult.push_back(BFSNode(it->getVertexName(), -1, INT_MAX));
+		vResult.push_back(ShorterRouteNode(it->getVertexName(), -1, INT_MAX));
 	}
 
 	BFSQueue.push(vertexList[s]);
@@ -72,9 +72,9 @@ vector<BFSNode> BFSSolution::BFS(Graph& g,int s) {
 	return vResult;
 }
 
-void BFSSolution::sortBFSList(vector<BFSNode>& BFSList) {
+void BFSSolution::sortBFSList(vector<ShorterRouteNode>& BFSList) {
 	sort(BFSList.begin(), BFSList.end(),
-		[](const BFSNode& a, const BFSNode& b) -> bool
+		[](const ShorterRouteNode& a, const ShorterRouteNode& b) -> bool
 		{
 			return a.getLevel() < b.getLevel();
 		});

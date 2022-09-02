@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BFSNode.cpp" />
+    <ClCompile Include="ShorterRouteNode.cpp" />
     <ClCompile Include="BFSSolution.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="GraphNode.cpp" />
@@ -149,7 +149,7 @@
     <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BFSNode.h" />
+    <ClInclude Include="ShorterRouteNode.h" />
     <ClInclude Include="BFSSolution.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="GraphNode.h" />
