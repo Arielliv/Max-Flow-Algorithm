@@ -6,15 +6,7 @@ Graph GreedySolution::run(Graph g, int s, int t) {
 	ShorterRouteNode cur;
 	int minCapacity, curCapacity;
 	while (getAncestorParent(GreedyDijkstraResult, t) == s) {
-		cur = GreedyDijkstraResult[t];
-		minCapacity = getMinCapacityInRoute(g,GreedyDijkstraResult, t);
-		while (cur.getVertexName() != s) {
-			curCapacity = residualGraph.getVectorVertex()[GreedyDijkstraResult[cur.getVertexName()].getParent()].getCapacity(cur.getVertexName());
-			cur = GreedyDijkstraResult[GreedyDijkstraResult[cur.getVertexName()].getParent()];
-			if (minCapacity > curCapacity) {
-				minCapacity = curCapacity;
-			}
-		}
+		minCapacity = getMinCapacityInRoute(residualGraph,GreedyDijkstraResult, t);
 		cur = GreedyDijkstraResult[t];
 		int parent = cur.getParent();
 		while (cur.getVertexName() != s) {
@@ -34,7 +26,7 @@ vector<ShorterRouteNode> GreedySolution::GreedyDijkstra(Graph& g, int s) {
 	vector<ShorterRouteNode> vResult; // d.
 	vector<bool> visited; // p.
 
-	for (int i = 0; i < g.getVSize()+1; i++) {
+	for (int i = 0; i <= g.getVSize(); i++) {
 		vResult.push_back(ShorterRouteNode(i, -1, INT_MIN));
 		visited.push_back(false);
 	}
@@ -76,10 +68,10 @@ int GreedySolution::getAncestorParent(vector<ShorterRouteNode> GreedyResult, int
 }
 
 int GreedySolution::getMinCapacityInRoute(Graph& g,vector<ShorterRouteNode> GreedyResult, int u) {
-	int min = g.getCapacity(GreedyResult[u].getParent(), u);
-	int cur = u;
-	int curCapacity = g.getCapacity(GreedyResult[cur].getParent(), cur);
 	int parent = GreedyResult[u].getParent();
+	int min = g.getCapacity(parent, u);
+	int cur = u;
+	int curCapacity = min;
 	while (parent != -1) {
 		curCapacity = g.getCapacity(GreedyResult[cur].getParent(), cur);
 		if (curCapacity < min) {

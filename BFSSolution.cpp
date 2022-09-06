@@ -6,15 +6,7 @@ Graph BFSSolution::run(Graph g, int s, int t) {
 	ShorterRouteNode cur;
 	int minCapacity, curCapacity;
 	while (getAncestorParent(BFSResult, t) == s) {
-		cur = BFSResult[t];
-		minCapacity = residualGraph.getVectorVertex()[BFSResult[cur.getVertexName()].getParent()].getCapacity(cur.getVertexName());
-		while (cur.getVertexName() != s) {
-			curCapacity = residualGraph.getVectorVertex()[BFSResult[cur.getVertexName()].getParent()].getCapacity(cur.getVertexName());
-			cur = BFSResult[BFSResult[cur.getVertexName()].getParent()];
-			if (minCapacity > curCapacity) {
-				minCapacity = curCapacity;
-			}
-		}
+		minCapacity = getMinCapacityInRoute(residualGraph, BFSResult, t);
 		cur = BFSResult[t];
 		int parent = cur.getParent();
 		while (cur.getVertexName() != s) {
@@ -78,4 +70,21 @@ void BFSSolution::sortBFSList(vector<ShorterRouteNode>& BFSList) {
 		{
 			return a.getLevel() < b.getLevel();
 		});
+}
+
+int BFSSolution::getMinCapacityInRoute(Graph& g, vector<ShorterRouteNode> BfsResult, int u) {
+	int parent = BfsResult[u].getParent();
+	int min = g.getCapacity(parent, u);
+	int cur = u;
+	int curCapacity = min;
+
+	while (parent != -1) {
+		curCapacity = g.getCapacity(BfsResult[cur].getParent(), cur);
+		if (curCapacity < min) {
+			min = curCapacity;
+		}
+		cur = parent;
+		parent = BfsResult[parent].getParent();
+	}
+	return min;
 }

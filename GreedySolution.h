@@ -1,6 +1,7 @@
 #include "Graph.h"
 #include "ShorterRouteNode.h"
 #include <queue>
+#include <climits>
 using namespace std;
 
 #pragma once

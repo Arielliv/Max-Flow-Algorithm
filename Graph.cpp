@@ -22,17 +22,21 @@ list<GraphNode> Graph::getAdjFullList(int u) {
 
 void Graph::AddEdge(int u, int v, int c) {
 	this->g[u].addEdge(v,c);
-	//this->g[v - 1].addEdge(u, 0);
 };
 
 void Graph::AddFlow(int u, int v, int f) {
-	if (this->g[u].getCapacity(v) < f) {
-		//error
-		cout << "error in add flow of vertex: " << u << " and vertex : " << v << " tried to add flow of: " << f << " to capacity : " << this->g[u].getCapacity(v) << endl;
-		//return;
+	if (!this->g[u].checkIfEdgeExists(v)) {
+		this->g[u].addEdge(v, f);
+		
 	}
-	this->g[u].addFlow(v, f);
-	//this->g[v - 1].addFlow(u, -f);
+	else if (this->g[u].getCapacity(v) < f) {
+		string error = "error in add flow of vertex: " + std::to_string(u) + " and vertex : " + std::to_string(v) + " tried to add flow of: " + std::to_string(f) + " to capacity : " + std::to_string(this->g[u].getCapacity(v));
+		throw std::logic_error(error);
+	}
+	else {
+		this->g[u].addFlow(v, f);
+	}
+	
 }
 
 void Graph::RemoveEdge(int u, int v) {
@@ -47,52 +51,20 @@ void Graph::printGraph() const{
 	}
 }
 
-Graph Graph::getNegativeGraph() {
-	Graph result = Graph(this->lSize);
-	for (int i = 0; i < this->lSize; i++) {
-		list<GraphNode> tempList = this->g[i].getAdjFullList();
-		for (auto y = tempList.begin(); y != tempList.end(); ++y) {
-			result.g[i].addEdge(y->getVertexName(), -y->getCapacity());
-		}
-
-	}
-	return result;
-}
-
-Graph Graph::getNegativeResidualGraph() {
-	Graph result = Graph(this->lSize);
-
-	for (int i = 0; i < this->lSize; i++) {
-		list<GraphNode> tempList = this->g[i].getAdjFullList();
-		for (auto y = tempList.begin(); y != tempList.end(); ++y) {
-			int f = y->getFlow();
-			int cf = y->getCapacity() - f;
-			if (cf < 0) {
-				result.g[i].addEdge(y->getVertexName(), y->getCapacity() - y->getFlow());
-			}
-			if (f < 0) {
-				result.g[y->getVertexName()].addEdge(i, y->getFlow());
-			}
-		}
-
-	}
-	return result;
-}
-
-
 Graph Graph::getResidualGraph() {
 	Graph result = Graph(this->lSize);
 
-	for (int i = 0; i < this->lSize; i++) {
-		list<GraphNode> tempList = this->g[i].getAdjFullList();
-		for (auto y = tempList.begin(); y != tempList.end(); ++y) {
-			int f = y->getFlow();
-			int cf = y->getCapacity() - f;
+	for (int u = 1; u <= this->lSize; u++) {
+		list<GraphNode> tempList = this->g[u].getAdjFullList();
+		for (auto v = tempList.begin(); v != tempList.end(); ++v) {
+			
+			int f = v->getFlow();
+			int cf = v->getCapacity() - f;
 			if (cf > 0) {
-				result.g[i].addEdge(y->getVertexName(), y->getCapacity() - y->getFlow());
+				result.g[u].addEdge(v->getVertexName(), v->getCapacity() - v->getFlow());
 			}
 			if (f > 0) {
-				result.g[y->getVertexName()].addEdge(i, y->getFlow());
+				result.g[v->getVertexName()].addEdge(u, v->getFlow());
 			}
 		}
 

@@ -1,6 +1,16 @@
-﻿  GreedySolution.cpp
+﻿  BFSSolution.cpp
+C:\Users\ariel7342\source\repos\Max-Flow-Algorithm\BFSSolution.cpp(7,19): warning C4101: 'curCapacity': unreferenced local variable
+  Graph.cpp
+  GreedySolution.cpp
+C:\Users\ariel7342\source\repos\Max-Flow-Algorithm\GreedySolution.cpp(7,19): warning C4101: 'curCapacity': unreferenced local variable
+  Utils.cpp
+C:\Users\ariel7342\source\repos\Max-Flow-Algorithm\Utils.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\ariel7342\source\repos\Max-Flow-Algorithm\Utils.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Vertex.cpp
   main.cpp
 C:\Users\ariel7342\source\repos\Max-Flow-Algorithm\Utils.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\ariel7342\source\repos\Max-Flow-Algorithm\Utils.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\ariel7342\source\repos\Max-Flow-Algorithm\main.cpp(50,38): warning C4101: 'e': unreferenced local variable
   Generating Code...
+C:\Users\ariel7342\source\repos\Max-Flow-Algorithm\Vertex.cpp(70): warning C4172: returning address of local variable or temporary: resultList
   Max-Flow-Algorithm.vcxproj -> C:\Users\ariel7342\source\repos\Max-Flow-Algorithm\Debug\Max-Flow-Algorithm.exe
